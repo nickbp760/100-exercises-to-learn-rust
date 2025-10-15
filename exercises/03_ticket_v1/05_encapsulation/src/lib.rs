@@ -1,8 +1,8 @@
 pub mod ticket {
     pub struct Ticket {
-        title: String,
-        description: String,
-        status: String,
+        pub title: String,
+        pub description: String,
+        pub status: String,
     }
 
     impl Ticket {
@@ -44,18 +44,18 @@ mod tests {
     #[test]
     fn description() {
         let ticket = Ticket::new("A title".into(), "A description".into(), "To-Do".into());
-        assert_eq!(ticket.description(), "A description");
+        assert_eq!(ticket.description, "A description");
     }
 
     #[test]
     fn title() {
         let ticket = Ticket::new("A title".into(), "A description".into(), "To-Do".into());
-        assert_eq!(ticket.title(), "A title");
+        assert_eq!(ticket.title, "A title");
     }
 
     #[test]
     fn status() {
         let ticket = Ticket::new("A title".into(), "A description".into(), "To-Do".into());
-        assert_eq!(ticket.status(), "To-Do");
+        assert_eq!(ticket.status, "To-Do");
     }
 }
