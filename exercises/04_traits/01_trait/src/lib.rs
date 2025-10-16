@@ -2,6 +2,23 @@
 // even, otherwise `false`.
 //
 // Then implement the trait for `u32` and `i32`.
+trait MaybeEven{
+    fn is_even(&self) -> bool;
+}
+
+impl MaybeEven for u32{
+    // meski kalau primitive di copy tapi dibiasakan pakai &self
+    fn is_even(&self) -> bool{
+        // ga bisa langsung reference di modulo
+        *self % 2 == 0
+    }
+}
+
+impl MaybeEven for i32{
+    fn is_even(&self) -> bool{
+        *self % 2 == 0
+    }
+}
 
 #[cfg(test)]
 mod tests {
