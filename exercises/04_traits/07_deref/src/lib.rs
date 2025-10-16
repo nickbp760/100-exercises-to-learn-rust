@@ -7,16 +7,15 @@
 pub struct Ticket {
     title: String,
     description: String,
-    status: String,
 }
 
 impl Ticket {
     pub fn title(&self) -> &str {
-        todo!()
+        &self.title.trim()
     }
 
     pub fn description(&self) -> &str {
-        todo!()
+        &self.description.trim()
     }
 }
 
@@ -28,8 +27,7 @@ mod tests {
     fn test_normalization() {
         let ticket = Ticket {
             title: "   A title ".to_string(),
-            description: " A description   ".to_string(),
-            status: "To-Do".to_string(),
+            description: " A description   ".to_string()
         };
 
         assert_eq!("A title", ticket.title());
