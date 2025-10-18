@@ -10,7 +10,7 @@ struct Ticket {
 #[derive(Debug, PartialEq)]
 enum Status {
     ToDo,
-    InProgress { assigned_to: String },
+    InProgress { assigned_to: Option<String> },
     Done,
 }
 
@@ -36,7 +36,15 @@ impl Ticket {
         }
     }
     pub fn assigned_to(&self) -> Option<&String> {
-        todo!()
+        match &self.status{
+            Status::InProgress { assigned_to } => {
+                match assigned_to {
+                    Some(name) => Some(name),
+                    None => None,
+                }
+            },
+            _ => panic!("Only `In-Progress` tickets can be assigned to someone")
+        }
     }
 }
 
@@ -63,7 +71,7 @@ mod tests {
             valid_title(),
             valid_description(),
             Status::InProgress {
-                assigned_to: "Alice".to_string(),
+                assigned_to: Some("Alice".to_string()),
             },
         );
         assert_eq!(ticket.assigned_to(), Some(&"Alice".to_string()));
